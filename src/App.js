@@ -7,14 +7,17 @@ function App() {
 
 
   const [search, setSearch] = useState("")
+  const [searchedFilm, setSearchedFilm] = useState("")
   const [film, setFilm] = useState({})
 
   const getMovie = () => {
+    setSearchedFilm(search)
     axios.get(`https://www.omdbapi.com/?t=${search}&apikey=3eff947d`)
       .then(res => setFilm(res.data))
       .catch(err => console.log(err))
 
       setSearch("")
+      
   }
   console.log(film)
 
@@ -35,8 +38,11 @@ function App() {
           />
           <button onClick={getMovie}>Search</button>
         </div>
+
+        {searchedFilm &&  
+        
         <div className="result-container">
-          {search &&
+        
             <Film
               poster={film.Poster}
               title={film.Title}
@@ -48,8 +54,10 @@ function App() {
               plot={film.Plot}
             />
 
-          }
+        
         </div>
+        
+        }
       </div>
 
     </div>
