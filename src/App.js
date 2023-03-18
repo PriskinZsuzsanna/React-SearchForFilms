@@ -36,7 +36,7 @@ function App() {
           <button onClick={getMovie}>Search</button>
         </div>
         <div className="result-container">
-          {film &&
+          {search &&
             <Film
               poster={film.Poster}
               title={film.Title}
