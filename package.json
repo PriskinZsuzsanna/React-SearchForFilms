@@ -2,7 +2,7 @@
   "name": "react-films",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://Priskinzsuzsanna.github.io/React-SearchForFilms",
+  "homepage": "https://priskinzsuzsanna.github.io/React-SearchForFilms/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
