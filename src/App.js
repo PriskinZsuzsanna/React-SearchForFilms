@@ -1,23 +1,57 @@
-import logo from './logo.svg';
+import axios from 'axios';
+import { useState } from 'react'
 import './App.css';
+import Film from './components/Film';
 
 function App() {
+
+
+  const [search, setSearch] = useState("")
+  const [film, setFilm] = useState({})
+
+  const getMovie = () => {
+    axios.get(`https://www.omdbapi.com/?t=${search}&apikey=3eff947d`)
+      .then(res => setFilm(res.data))
+      .catch(err => console.log(err))
+
+      setSearch("")
+  }
+  console.log(film)
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="container">
+        <div className="header">
+          <h1>Find your favourite movies!</h1>
+          <input type="text" value={search} placeholder="Game of thrones..."
+          onChange={(e) => {
+            setSearch(e.target.value)
+          }}
+          onKeyUp={(e) => {
+            if(e.keyCode == "13"){
+              getMovie()
+            }
+          }}
+          />
+          <button onClick={getMovie}>Search</button>
+        </div>
+        <div className="result-container">
+          {film &&
+            <Film
+              poster={film.Poster}
+              title={film.Title}
+              year={film.Year}
+              actors={film.Actors}
+              genre={film.Genre}
+              imdbRating={film.imdbRating}
+              metascore={film.Metascore}
+              plot={film.Plot}
+            />
+
+          }
+        </div>
+      </div>
+
     </div>
   );
 }
