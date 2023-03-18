@@ -5,7 +5,7 @@ React Films - search for films
  - onChange
  - onClick
  - clear input field
- - conditional rendering
+ - conditional rendering with boolean
  
  
 Live: 
